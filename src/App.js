@@ -25,6 +25,13 @@ const getData = async () => {
 useEffect(() => {
   getData();
 }, []) 
+
+const handleSearch = (e) => {
+  setSearch(e.target.value)
+}
+
+const filteredData = data.filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
+
  return (
     <div className="container mt-2">
       <div>
@@ -44,8 +51,13 @@ useEffect(() => {
       {/* <TaxComp taxData={taxDataState}/> */}
       {/* <TaxComp taxData={taxData1}/> */}
       <hr />
-      <UseRefComp/>
-      <Card   data={data}/>
+      {/* <UseRefComp/> */}
+      <hr />
+
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <input type="text" value={search} onChange={handleSearch} />
+      </div>
+      <Card   data={filteredData}/>
     </div>
   );
 }
