@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Header from "./components/Header";
 import HeaderMemo from "./components/HeaderMemo";
 import TaxComp from "./components/TaxComp";
@@ -32,6 +32,11 @@ const handleSearch = (e) => {
 
 const filteredData = data.filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
 
+const filteredMemoData = useMemo(()=> {
+  console.log("useMemo çalıştı")
+  return data.filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
+},[data,search])
+
  return (
     <div className="container mt-2">
       <div>
@@ -57,7 +62,8 @@ const filteredData = data.filter(product => product.title.toLowerCase().includes
       <div style={{ display: "flex", justifyContent: "center" }}>
         <input type="text" value={search} onChange={handleSearch} />
       </div>
-      <Card   data={filteredData}/>
+      {/* <Card   data={filteredData}/> */}
+      <Card   data={filteredMemoData}/>
     </div>
   );
 }

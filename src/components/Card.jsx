@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 const Card = ({ data }) => {
   console.log("Render => Card componeneti");
@@ -36,4 +36,4 @@ const Card = ({ data }) => {
     )
 }
 
-export default Card
+export default memo(Card)
